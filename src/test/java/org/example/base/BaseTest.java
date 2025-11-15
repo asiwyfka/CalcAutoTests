@@ -53,7 +53,9 @@ public class BaseTest {
                     if (params != null && params.length > 0) {
                         paramsPart = stream(params)
                                 .map(Object::toString)
-                                .map(string -> string.replaceAll("[\\\\/:*?\"<>|]", "_")) // безопасные символы для Windows
+                                .map(string -> string
+                                        .replace("*", "×")
+                                        .replaceAll("[\\\\/:*?\"<>|]", "_")) // безопасные символы для Windows
                                 .collect(joining(","));
                         paramsPart = "-" + paramsPart;
                     }
