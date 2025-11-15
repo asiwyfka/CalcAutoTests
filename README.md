@@ -24,9 +24,21 @@
 
 ![Второй вариант](https://github.com/user-attachments/assets/e3397c5c-bf82-42bf-9b12-7c1feef565ec)
 
+smokeTest-6_5=,50,Smoke,Умножение-2025-11-15_19-10-19
+
 Вводим в терминале allure serve allure-results. Получаем сохраненные отчеты Allure в браузере.
+
+Скрин всех тестов:
 
 ![Скрин тестов в Allure](https://github.com/user-attachments/assets/9b8212bb-5630-4abc-8af7-c3c4ade57d57)
 
+Скрин упавшего теста:
 
 ![Скрин упавшего теста в Allure](https://github.com/user-attachments/assets/a68ee800-e956-431c-a786-3534d09dcdb1)
+
+Скрин калькулятора на момент упавшего теста. Название скрина: smokeTest-6_5=,50,Smoke,Умножение-2025-11-15_19-10-19:
+
+<img width="1295" height="879" alt="smokeTest-6_5=,50,Smoke,Умножение-2025-11-15_19-10-19" src="https://github.com/user-attachments/assets/f6276218-b326-4f49-8fa0-290d7bd3d27e" />
+
+
+
