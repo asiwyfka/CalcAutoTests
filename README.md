@@ -24,8 +24,6 @@
 
 ![Второй вариант](https://github.com/user-attachments/assets/e3397c5c-bf82-42bf-9b12-7c1feef565ec)
 
-smokeTest-6_5=,50,Smoke,Умножение-2025-11-15_19-10-19
-
 Вводим в терминале allure serve allure-results. Получаем сохраненные отчеты Allure в браузере.
 
 Скрин всех тестов:
