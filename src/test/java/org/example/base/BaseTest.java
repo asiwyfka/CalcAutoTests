@@ -1,80 +1,51 @@
 package org.example.base;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Screenshots;
-import com.codeborne.selenide.logevents.SelenideLogger;
+import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Attachment;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.example.pages.CalculatorPage;
+import org.openqa.selenium.OutputType;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.ByteArrayInputStream;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-import static java.nio.file.Files.copy;
-import static java.nio.file.Files.createDirectories;
-import static java.util.Arrays.stream;
-import static java.util.stream.Collectors.joining;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
+import static io.qameta.allure.Allure.addAttachment;
 
 public class BaseTest {
 
-    @BeforeClass
-    public void setUp() {
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "maximize";
-        Configuration.timeout = 5000;
+    protected CalculatorPage calculator;
 
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
-                .screenshots(true)
-                .savePageSource(false));
+    @BeforeClass
+    public void setUpClass() {
+        addListener("AllureSelenide",
+                new AllureSelenide().screenshots(true).savePageSource(false));
+    }
+
+    @BeforeMethod
+    public void setUpTest() {
+        calculator = open("/simple", CalculatorPage.class);
     }
 
     @AfterMethod
     public void saveScreenshotIfFailed(ITestResult result) {
         if (!result.isSuccess()) {
-            try {
-                File screenshot = Screenshots.takeScreenShotAsFile();
-                if (screenshot != null && screenshot.exists()) {
-
-                    // Создаем папку
-                    var dir = Path.of("build", "screenshots");
-                    createDirectories(dir);
-
-                    // Имя метода
-                    var testName = result.getName();
-
-                    // Параметры теста
-                    var params = result.getParameters();
-                    var paramsPart = "";
-                    if (params != null && params.length > 0) {
-                        paramsPart = stream(params)
-                                .map(Object::toString)
-                                .map(string -> string
-                                        .replace("*", "×")
-                                        .replaceAll("[\\\\/:*?\"<>|]", "_")) // безопасные символы для Windows
-                                .collect(joining(","));
-                        paramsPart = "-" + paramsPart;
-                    }
-
-                    // Текущая дата и время
-                    var dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
-
-                    // Полное имя файла
-                    var fileName = testName + paramsPart + "-" + dateTime + ".png";
-
-                    // Копируем скриншот
-                    copy(screenshot.toPath(), dir.resolve(fileName));
-
-                    System.out.println("Скриншот сохранён: " + dir.resolve(fileName).toAbsolutePath());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            addAttachment( "Скриншот при падении: " + result.getName(),
+                    "image/png",
+                    new ByteArrayInputStream(screenshot()),
+                    "png");
         }
+    }
+
+    @Attachment(type = "image/png")
+    private byte[] screenshot() {
+        return Selenide.screenshot(OutputType.BYTES);
     }
 
     @AfterClass

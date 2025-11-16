@@ -14,10 +14,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
-    <selenide.version>6.17.2</selenide.version>
-    <webdrivermanager.version>5.9.2</webdrivermanager.version>
-    <testng.version>7.8.0</testng.version>
-    <allure.version>2.20.1</allure.version>
+    <selenide.version>7.12.0</selenide.version>
+    <testng.version>7.11.0</testng.version>
+    <allure.version>2.27.0</allure.version>
   </properties>
 
   <dependencies>
@@ -32,12 +31,6 @@
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
       <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>${webdrivermanager.version}</version>
     </dependency>
 
     <dependency>

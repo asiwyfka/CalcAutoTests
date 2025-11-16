@@ -4,18 +4,11 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import static java.lang.Character.isDigit;
 
 public class CalculatorPage {
 
     private SelenideElement resultField = $(".calculator__display");
-
-    @Step("Открываем калькулятор")
-    public CalculatorPage openCalculator() {
-        open("https://ecalc.ru/simple/");
-        return this;
-    }
 
     @Step("Нажимаем кнопки: {input}")
     public CalculatorPage press(String input) {
@@ -35,7 +28,7 @@ public class CalculatorPage {
                     break;
                 default:
                     if (isDigit(symbol) || "+-*/.".indexOf(symbol) >= 0) {
-                        $("button[value='" + symbol + "']").click();   // только цифры и обычные операции + . / * - больше ничего не ищем
+                        $("button[value='" + symbol + "']").click();
                     }
                     break;
             }

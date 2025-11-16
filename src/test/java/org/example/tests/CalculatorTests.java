@@ -3,8 +3,6 @@ package org.example.tests;
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
 import org.example.base.BaseTest;
-import org.example.pages.CalculatorPage;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -14,13 +12,6 @@ import static org.testng.Assert.assertEquals;
 
 @Listeners({AllureTestNg.class})
 public class CalculatorTests extends BaseTest {
-
-    private CalculatorPage calculator;
-
-    @BeforeMethod
-    public void setUpTest() {
-        calculator = new CalculatorPage().openCalculator();
-    }
 
     @DataProvider(name = "smokeData")
     public Object[][] smokeData() {
