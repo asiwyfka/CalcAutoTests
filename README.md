@@ -10,7 +10,7 @@
 
 Все коммиты выполнены в одной master ветке. 
 
-Для чистоты кода использовал var и импорты static методов. В работе использовал Page Object Pattern, DataProvider - для параметризации тестов, также написал метод saveScreenshotIfFailed для сохранения скринов упавших тестов калькулятора по адресу: CalcAutoTests\build\screenshots 
+Для чистоты кода использовал var и импорты static методов. В работе использовал Page Object Pattern, DataProvider - для параметризации тестов, также написан метод saveScreenshotIfFailed для сохранения скринов упавших тестов калькулятора по адресу: CalcAutoTests\build\screenshots 
 
 Проверка работы программы:
 1. Первый вариант, когда все тесты выполняются корректно.
@@ -20,23 +20,19 @@
 
 
 2. Второй вариант, когда smoke тест падает.
-Сымитируем падение теста сменой ожидаемого значения для операции 6*5=30 на 50. Это делаем для проверки работы зависимости regression тестов от smoke тестов. Они не должны будут отрабатывать, если smoke тесты упадут. Также на этом этапе проверим работу Allure отчетности в вебе, которая формируется благодря json файлам из \CalcAutoTests\allure-results после тестов. Запускаем тесты снова.
+Сымитируем падение теста сменой ожидаемого значения для операции 6*5=30 на 50. Это делаем для проверки работы зависимости regression тестов от smoke тестов. Они не должны будут отрабатывать, если smoke тесты упадут. Также на этом этапе проверим работу Allure отчетности в вебе, которая формируется благодря json файлам из CalcAutoTests\target\allure-results после тестов. Запускаем тесты снова.
 
 ![Второй вариант](https://github.com/user-attachments/assets/e3397c5c-bf82-42bf-9b12-7c1feef565ec)
 
-Вводим в терминале allure serve allure-results. Получаем сохраненные отчеты Allure в браузере.
+Вводим в терминале allure serve target/allure-results. Получаем сохраненные отчеты Allure в браузере.
 
 Скрин всех тестов:
 
-![Скрин тестов в Allure](https://github.com/user-attachments/assets/9b8212bb-5630-4abc-8af7-c3c4ade57d57)
+<img width="1920" height="1080" alt="Все тесты успешны" src="https://github.com/user-attachments/assets/802cf327-08d8-4e91-a87a-ada515e60d08" />
 
-Скрин упавшего теста:
+Скрин отчета упавшего теста с снимком экрана калькулятора в момент ошибки:
 
-![Скрин упавшего теста в Allure](https://github.com/user-attachments/assets/a68ee800-e956-431c-a786-3534d09dcdb1)
-
-Скрин калькулятора на момент упавшего теста. Название скрина: smokeTest-6_5=,50,Smoke,Умножение-2025-11-15_19-10-19:
-
-<img width="1295" height="879" alt="smokeTest-6_5=,50,Smoke,Умножение-2025-11-15_19-10-19" src="https://github.com/user-attachments/assets/f6276218-b326-4f49-8fa0-290d7bd3d27e" />
+<img width="1920" height="1080" alt="Упавший тест" src="https://github.com/user-attachments/assets/80d7d379-cf7c-4855-bae2-88fab62e4e48" />
 
 
 
