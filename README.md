@@ -22,7 +22,8 @@
 2. Второй вариант, когда smoke тест падает.
 Сымитируем падение теста сменой ожидаемого значения для операции 6*5=30 на 50. Это делаем для проверки работы зависимости regression тестов от smoke тестов. Они не должны будут отрабатывать, если smoke тесты упадут. Также на этом этапе проверим работу Allure отчетности в вебе, которая формируется благодря json файлам из CalcAutoTests\target\allure-results после тестов. Запускаем тесты снова.
 
-![Второй вариант](https://github.com/user-attachments/assets/e3397c5c-bf82-42bf-9b12-7c1feef565ec)
+<img width="1920" height="1080" alt="Второй вариант" src="https://github.com/user-attachments/assets/f671ee0b-1149-4274-91c8-9717492eeaf2" />
+
 
 Вводим в терминале allure serve target/allure-results. Получаем сохраненные отчеты Allure в браузере.
 
